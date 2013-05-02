@@ -1,0 +1,255 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>DreamTemplate</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link href="style.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="js/jquery.js"></script>
+<script type="text/javascript">
+// <![CDATA[
+jQuery(document).ready(function(){
+	$('#contactform').submit(function(){				  
+		var action = $(this).attr('action');
+		$.post(action, { 
+			name: $('#name').val(),
+			email: $('#email').val(),
+			company: $('#company').val(),
+			subject: $('#subject').val(),
+			message: $('#message').val()
+		},
+			function(data){
+				$('#contactform #submit').attr('disabled','');
+				$('.response').remove();
+				$('#contactform').before('<p class="response">'+data+'</p>');
+				$('.response').slideDown();
+				if(data=='Message sent!') $('#contactform').slideUp();
+			}
+		); 
+		return false;
+	});
+});
+// ]]>
+</script>
+
+
+ <!-- validate -->
+		<SCRIPT type=text/javascript>
+		<!--
+			function validateField(fieldId, fieldBoxId, fieldType, required)
+			{
+				fieldBox = document.getElementById(fieldBoxId);
+				fieldObj = document.getElementById(fieldId);
+
+				if(fieldType == 'text'  ||  fieldType == 'textarea'  ||  fieldType == 'password'  ||  fieldType == 'file'  ||  fieldType == 'phone'  || fieldType == 'website')
+				{	
+					if(required == 1 && fieldObj.value == '')
+					{
+						fieldObj.setAttribute("class","mainFormError");
+						fieldObj.setAttribute("className","mainFormError");
+						fieldObj.focus();
+						return false;					
+					}
+
+				}
+
+
+				else if(fieldType == 'menu'  || fieldType == 'country'  || fieldType == 'state')
+				{	
+					if(required == 1 && fieldObj.selectedIndex == 0)
+					{				
+						fieldObj.setAttribute("class","mainFormError");
+						fieldObj.setAttribute("className","mainFormError");
+						fieldObj.focus();
+						return false;					
+					}
+
+				}
+
+
+				else if(fieldType == 'email')
+				{	
+					if((required == 1 && fieldObj.value=='')  ||  (fieldObj.value!=''  && !validate_email(fieldObj.value)))
+					{				
+						fieldObj.setAttribute("class","mainFormError");
+						fieldObj.setAttribute("className","mainFormError");
+						fieldObj.focus();
+						return false;					
+					}
+
+				}
+
+
+
+			}
+
+			function validate_email(emailStr)
+			{		
+				apos=emailStr.indexOf("@");
+				dotpos=emailStr.lastIndexOf(".");
+
+				if (apos<1||dotpos-apos<2) 
+				{
+					return false;
+				}
+				else
+				{
+					return true;
+				}
+			}
+
+
+			function validateDate(fieldId, fieldBoxId, fieldType, required,  minDateStr, maxDateStr)
+			{
+				retValue = true;
+
+				fieldBox = document.getElementById(fieldBoxId);
+				fieldObj = document.getElementById(fieldId);	
+				dateStr = fieldObj.value;
+
+
+				if(required == 0  && dateStr == '')
+				{
+					return true;
+				}
+
+
+				if(dateStr.charAt(2) != '/'  || dateStr.charAt(5) != '/' || dateStr.length != 10)
+				{
+					retValue = false;
+				}	
+
+				else	// format's okay; check max, min
+				{
+					currDays = parseInt(dateStr.substr(0,2),10) + parseInt(dateStr.substr(3,2),10)*30  + parseInt(dateStr.substr(6,4),10)*365;
+					//alert(currDays);
+
+					if(maxDateStr != '')
+					{
+						maxDays = parseInt(maxDateStr.substr(0,2),10) + parseInt(maxDateStr.substr(3,2),10)*30  + parseInt(maxDateStr.substr(6,4),10)*365;
+						//alert(maxDays);
+						if(currDays > maxDays)
+							retValue = false;
+					}
+
+					if(minDateStr != '')
+					{
+						minDays = parseInt(minDateStr.substr(0,2),10) + parseInt(minDateStr.substr(3,2),10)*30  + parseInt(minDateStr.substr(6,4),10)*365;
+						//alert(minDays);
+						if(currDays < minDays)
+							retValue = false;
+					}
+				}
+
+				if(retValue == false)
+				{
+					fieldObj.setAttribute("class","mainFormError");
+					fieldObj.setAttribute("className","mainFormError");
+					fieldObj.focus();
+					return false;
+				}
+			}
+		//-->
+		</SCRIPT>
+		<!-- end validate -->
+
+
+
+</head>
+<body>
+<div class="main">
+  <div class="blok_header">
+    <div class="header">
+      <div class="logo"> <a href="index.html"><img src="images/logo.gif" width="349" height="98" border="0" alt="logo" class="one" /></a> </div>
+      <div class="galeria">
+        <p><a href="#" class="thre"><img src="images/spacer.gif" alt="pisture" width="24" height="23" border="0" /></a> <a href="#" class="sek"><img src="images/spacer.gif" alt="pisture" width="24" height="23" border="0" /></a> <a href="#" class="first"><img src="images/spacer.gif" alt="pisture" width="24" height="23" border="0" /></a> </p>
+      </div>
+    </div>
+    <div class="clr"></div>
+  </div>
+  <div class="menu_resize_bg">
+    <div class="menu_resize">
+      <div class="menu">
+        <ul>
+          <li><a href="index.html"><span>Home Page </span></a></li>
+          <li><a href="portfolio.html"><span>Services</span></a></li>
+          <li><a href="portfolio.html"><span>Portfolio</span></a></li>
+          <li><a href="about.html"><span> About Us </span></a></li>
+          <li><a href="contact.html" class="active"><span> Contact Us</span></a></li>
+        </ul>
+      </div>
+      <div class="search">
+        <form id="form1" name="form1" method="post" action="">
+          <label><span>
+            <input name="q" type="text" class="keywords" id="textfield" maxlength="50" value="Search..." />
+            </span>
+            <input name="b" type="image" src="images/search.gif" class="button" />
+          </label>
+        </form>
+      </div>
+      <div class="clr"></div>
+    </div>
+    <div class="clr"></div>
+  </div>
+  <div class="clr"></div>
+  <div class="body_resize">
+    <div class="body">
+      <h3>Register</h3>
+      <div class="left">
+        <h2>Sign-Up Form</h2>
+        <p>orci massa feugiat ligula, sed bibendum nibh dui porta lorem. Duis nulla enim, porta in mattis quis, tristique vitae metus. Donec quam arcu, bibendum a feugiat eget, vehicula in elit. Cum sociis natoque penatibus et magnis dis parturient montes </p>
+        <div class="form">
+            <form name="form1" method=post enctype=multipart/form-data action=pickup.php onSubmit="return validatePage1();" id="contactform">>
+
+
+		    
+              <li>
+                <label for="fname"><strong>First Name</strong> <span class="red">*</span></label>
+                <input id="fname" name="fname" class="text" value=''/>
+              </li>
+
+				
+				
+
+		
+		<!-- end of this page -->
+
+		<!-- page validation -->
+		  <SCRIPT type=text/javascript>
+		<!--
+			function validatePage1()
+			{
+				retVal = true;
+				if (validateField('fname','','text',1) == false)
+ retVal=false;
+
+
+var fname = document.form1.fname.value;
+
+if (fname == ""){
+    alert("You must enter your name. Fields marked with an asterisk (*) are required");
+    return false;
+  }
+
+
+   
+    }
+//-->
+</script>
+
+		<!-- end page validaton -->
+
+
+
+		<!-- next page buttons -->
+								<label class="">
+									<br />
+									<br />
+								  Type the following (for security purposes)&nbsp;<a class=info href=#><span class=infobox>For security purposes, please type the letters in the image.</span></a>: <BR>
+								  <img src="CaptchaSecurityImages.php" class="floated" />
+		  </label>
+
+								<input id="captchaForm" name="security_code" class="mainForm" type="text"/>
+					<input id="saveForm" type="submit" value="Submit Form" />
+				</li>
+
+		</form>

@@ -1,0 +1,408 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>DreamTemplate</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link href="style.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="js/jquery.js"></script>
+<script type="text/javascript">
+
+
+		 <!-- validate -->
+		<!--
+			function validateField(fieldId, fieldBoxId, fieldType, required)
+			{
+				fieldBox = document.getElementById(fieldBoxId);
+				fieldObj = document.getElementById(fieldId);
+
+				if(fieldType == 'text'  ||  fieldType == 'textarea'  ||  fieldType == 'password'  ||  fieldType == 'file'  ||  fieldType == 'phone'  || fieldType == 'website')
+				{	
+					if(required == 1 && fieldObj.value == '')
+					{
+						fieldObj.setAttribute("class","mainFormError");
+						fieldObj.setAttribute("className","mainFormError");
+						fieldObj.focus();
+						return false;					
+					}
+
+				}
+
+
+				else if(fieldType == 'menu'  || fieldType == 'country'  || fieldType == 'state')
+				{	
+					if(required == 1 && fieldObj.selectedIndex == 0)
+					{				
+						fieldObj.setAttribute("class","mainFormError");
+						fieldObj.setAttribute("className","mainFormError");
+						fieldObj.focus();
+						return false;					
+					}
+
+				}
+
+
+				else if(fieldType == 'email')
+				{	
+					if((required == 1 && fieldObj.value=='')  ||  (fieldObj.value!=''  && !validate_email(fieldObj.value)))
+					{				
+						fieldObj.setAttribute("class","mainFormError");
+						fieldObj.setAttribute("className","mainFormError");
+						fieldObj.focus();
+						return false;					
+					}
+
+				}
+
+
+
+			}
+
+			function validate_email(emailStr)
+			{		
+				apos=emailStr.indexOf("@");
+				dotpos=emailStr.lastIndexOf(".");
+
+				if (apos<1||dotpos-apos<2) 
+				{
+					return false;
+				}
+				else
+				{
+					return true;
+				}
+			}
+
+
+			function validateDate(fieldId, fieldBoxId, fieldType, required,  minDateStr, maxDateStr)
+			{
+				retValue = true;
+
+				fieldBox = document.getElementById(fieldBoxId);
+				fieldObj = document.getElementById(fieldId);	
+				dateStr = fieldObj.value;
+
+
+				if(required == 0  && dateStr == '')
+				{
+					return true;
+				}
+
+
+				if(dateStr.charAt(2) != '/'  || dateStr.charAt(5) != '/' || dateStr.length != 10)
+				{
+					retValue = false;
+				}	
+
+				else	// format's okay; check max, min
+				{
+					currDays = parseInt(dateStr.substr(0,2),10) + parseInt(dateStr.substr(3,2),10)*30  + parseInt(dateStr.substr(6,4),10)*365;
+					//alert(currDays);
+
+					if(maxDateStr != '')
+					{
+						maxDays = parseInt(maxDateStr.substr(0,2),10) + parseInt(maxDateStr.substr(3,2),10)*30  + parseInt(maxDateStr.substr(6,4),10)*365;
+						//alert(maxDays);
+						if(currDays > maxDays)
+							retValue = false;
+					}
+
+					if(minDateStr != '')
+					{
+						minDays = parseInt(minDateStr.substr(0,2),10) + parseInt(minDateStr.substr(3,2),10)*30  + parseInt(minDateStr.substr(6,4),10)*365;
+						//alert(minDays);
+						if(currDays < minDays)
+							retValue = false;
+					}
+				}
+
+				if(retValue == false)
+				{
+					fieldObj.setAttribute("class","mainFormError");
+					fieldObj.setAttribute("className","mainFormError");
+					fieldObj.focus();
+					return false;
+				}
+			}
+		//-->
+		</SCRIPT>
+		<!-- end validate -->
+</head>
+<body>
+<div class="main">
+  <div class="blok_header">
+    <div class="header"><img src="images/logo.png" width="401" height="98" />
+      <div class="galeria">
+        <p><a href="#" class="thre"><img src="images/spacer.gif" alt="pisture" width="24" height="23" border="0" /></a> <a href="#" class="sek"><img src="images/spacer.gif" alt="pisture" width="24" height="23" border="0" /></a> <a href="#" class="first"><img src="images/spacer.gif" alt="pisture" width="24" height="23" border="0" /></a> </p>
+      </div>
+    </div>
+    <div class="clr"></div>
+  </div>
+  <div class="menu_resize_bg">
+    <div class="menu_resize">
+      <div class="menu">
+        <ul>
+          <li><a href="index.html"><span>Home Page </span></a></li>
+          <li><a href="portfolio.html"><span>Services</span></a></li>
+          <li><a href="portfolio.html"><span>Portfolio</span></a></li>
+          <li><a href="about.html"><span> About Us </span></a></li>
+          <li><a href="contact.html" class="active"><span> Contact Us</span></a></li>
+        </ul>
+      </div>
+      <div class="clr"></div>
+      </div>
+    <div class="clr"></div>
+    </div>
+  <div class="clr"></div>
+  <div class="body_resize">
+   <div class="body">
+      <h3>SIGN UP</h3>
+      <div class="left">
+        <h2>Sign-Up Form</h2>
+        <p>orci massa feugiat ligula, sed bibendum nibh dui porta lorem. Duis nulla enim, porta in mattis quis, tristique vitae metus. Donec quam arcu, bibendum a feugiat eget, vehicula in elit. Cum sociis natoque penatibus et magnis dis parturient montes </p>
+         <div class="form">
+       
+      
+ 
+       <!-- <form name="form1" form action="contact.php" method="post" id="contactform"> -->
+        <form name="form1" method=post enctype=multipart/form-data action=contact.php onSubmit="return validatePage1();" id="contactform">
+
+		 <ol>
+		   <li>
+                <label for="fname"><strong>First Name </strong><span class="red">*</span></label>
+                <input id="fname" name="fname" size=20 class="text" value=''/>
+              </li>
+              
+              <li>
+                <label for="lname"><strong>Last Name </strong><span class="red">*</span></label>
+                <input id="lname" name="lname" class="text" />
+              </li>
+				
+                 <li>
+                <label for="email"><strong>Your email </strong><span class="red">*</span></label>
+                <input id="email" name="email" class="text" />
+              </li>
+              <li>
+                <label for="Handle"><strong>Handle *<br />
+                (Unique user name)</strong></label>
+                <input id="handle" name="handle" class="text" />
+              </li>
+              <br />
+                <li>
+              <label class=""><strong>Gender</strong>&nbsp;*</label><select class=mainForm name=state id=gender><option value='' selected="selected"> </option><option value="M">Male</option><option value="F">Female</option></SELECT>
+              </li>
+              <br />
+              <li>
+                <label for="city"><strong>City *</strong></label>
+                <input id="city" name="city" class="text" />
+              </li>
+              <li>
+              <label class=""><strong>State</strong>&nbsp;*</label><select class=mainForm name=state id=state><option value='' selected="selected"> </option><option value="Alabama">Alabama</option><option value="Alaska">Alaska</option><option value="Arizona">Arizona</option><option value="Arkansas">Arkansas</option><option value="California">California</option><option value="Colorado">Colorado</option><option value="Connecticut">Connecticut</option><option value="Delaware">Delaware</option><option value="Florida">Florida</option><option value="Georgia">Georgia</option><option value="Hawaii">Hawaii</option><option value="Idaho">Idaho</option><option value="Illinois">Illinois</option><option value="Indiana">Indiana</option><option value="Iowa">Iowa</option><option value="Kansas">Kansas</option><option value="Kentucky">Kentucky</option><option value="Louisiana">Louisiana</option><option value="Maine">Maine</option><option value="Maryland">Maryland</option><option value="Massachusetts">Massachusetts</option><option value="Michigan">Michigan</option><option value="Minnesota">Minnesota</option><option value="Mississippi">Mississippi</option><option value="Missouri">Missouri</option><option value="Montana">Montana</option><option value="Nebraska">Nebraska</option><option value="Nevada">Nevada</option><option value="New Hampshire">New Hampshire</option><option value="New Jersey">New Jersey</option><option value="New Mexico">New Mexico</option><option value="New York">New York</option><option value="North Carolina">North Carolina</option><option value="North Dakota">North Dakota</option><option value="Ohio">Ohio</option><option value="Oklahoma">Oklahoma</option><option value="Oregon">Oregon</option><option value="Pennsylvania">Pennsylvania</option><option value="Rhode Island">Rhode Island</option><option value="South Carolina">South Carolina</option><option value="South Dakota">South Dakota</option><option value="Tennessee">Tennessee</option><option value="Texas">Texas</option><option value="Utah">Utah</option><option value="Vermont">Vermont</option><option value="Virginia">Virginia</option><option value="Washington">Washington</option><option value="West Virginia">West Virginia</option><option value="Wisconsin">Wisconsin</option><option value="Wyoming">Wyoming</option></SELECT>
+              </li>
+              
+             
+              <li>
+                <label for="tweet"><strong>Tweet <br />
+                Send out your first tweet! </strong><span class="red"></span></label>
+                <textarea id="tweet" name="message" rows="30" cols="50"></textarea>
+              </li>
+             
+            </ol>
+            
+            
+            <!-- end of this page -->
+
+		<!-- page validation -->
+		  <SCRIPT type=text/javascript>
+		
+		function validatePage1()
+			{
+				retVal = true;
+if (validateField('fname','','text',1) == false)
+ retVal=false;
+ if (validateField('lname','','text',1) == false)
+ retVal=false;
+ if (validateField('email','','email',1) == false)
+ retVal=false;
+if (validateField('handle','','text',1) == false)
+ retVal=false;
+  if (validateField('gender','','text',1) == false)
+ retVal=false;
+if (validateField('city','','text',1) == false)
+ retVal=false;
+if (validateField('state','','state',1) == false)
+ retVal=false;
+
+ 
+var emailAddress = document.form1.email.value;
+var fname = document.form1.fname.value;
+var lname = document.form1.lname.value;
+var city = document.form1.city.value;
+var state = document.form1.state.value;
+var gender = document.form1.gender.value;
+var handle = document.form1.handle.value;
+if (fname == ""){
+    alert("You must enter your first name. Fields marked with an asterisk (*) are required");
+    return false;
+  }
+  if (lname == ""){
+    alert("You must enter your last name. Fields marked with an asterisk (*) are required");
+    return false;
+  }
+  if (city == ""){
+    alert("You must enter your city. Fields marked with an asterisk (*) are required");
+    return false;
+  }
+  if (state == ""){
+    alert("You must enter your state. Fields marked with an asterisk (*) are required");
+    return false;
+  }
+    if (gender == ""){
+    alert("You must enter your gender. Fields marked with an asterisk (*) are required");
+    return false;
+  }
+if (emailAddress == ""){
+    alert("You must enter your email address. Fields marked with an asterisk (*) are required");
+    return false;
+  }
+  if (handle == ""){
+    alert("You must enter your email address. Fields marked with an asterisk (*) are required");
+    return false;
+  }
+    
+    }
+</script>
+<!-- end page validaton -->
+            
+            
+             <li class="buttons">
+                <input type="image" name=submit id=submit src="images/send.gif" class="send" />
+                <div class="clr"></div>
+              </li>
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+          </form>
+				
+					
+        </div>
+      </div>
+      <div class="right">
+        <h2>Get in touch!</h2>
+        <p><strong>Address</strong>:       1458 Sample Road, Greenvalley<br />
+          <strong>Telephone</strong>:   +123-1234-5678<br />
+          <strong>FAX:</strong> +458-4578<br />
+          <strong>Others</strong>:         +301 - 0125 - 01258<br />
+          <strong>E-mail</strong>:           mail@yoursitename.com </p>
+        <img src="images/Twitter.gif" alt="pisture" width="287" height="70" />
+        <h2>Testimonials</h2>
+        <p><em>“ Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridicu lus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. „</em><br />
+          <strong><em>- John Doe, companyname.com </em></strong></p>
+      </div>
+      <div class="clr"></div>
+    </div>
+    <div class="clr"></div>
+  </div>
+  <div class="FBG_blog">
+    <div class="FBG_blog_resize"> <a href="#"><img src="images/logo_body.gif" alt="pisture" width="144" height="62" border="0" /></a>
+      <div class="recent">
+        <h2>Welcome to my site.</h2>
+      </div>
+      <div class="recent2">
+        <p>Dipisicing elit, sed do eiusmod tempor incididunt ut labore et?</p>
+      </div>
+      <div class="clr"></div>
+    </div>
+    <div class="clr"></div>
+  </div>
+</div>
+<div class="FBG">
+  <div class="FBG_resize">
+    <div class="left">
+      <h2>About </h2>
+      <ul>
+        <li><a href="#">Overview</a></li>
+        <li><a href="#">Another Link</a></li>
+        <li><a href="#">Our Company</a></li>
+        <li><a href="#">Our Staff</a></li>
+        <li><a href="#">Mission </a></li>
+        <li><a href="#">Statement</a></li>
+      </ul>
+    </div>
+    <div class="left">
+      <h2>Services</h2>
+      <ul>
+        <li><a href="#">First Service</a></li>
+        <li><a href="#">Second Service</a></li>
+        <li><a href="#">Another Service</a></li>
+        <li><a href="#">A Fourth Service</a></li>
+      </ul>
+    </div>
+    <div class="left">
+      <h2>Media</h2>
+      <ul>
+        <li><a href="#">Image Gallery</a></li>
+        <li><a href="#">Video Gallery</a></li>
+        <li><a href="#">Audio Files</a></li>
+        <li><a href="#">The Podcast</a></li>
+      </ul>
+    </div>
+    <div class="left">
+      <h2>Blog</h2>
+      <ul>
+        <li><a href="#">Category One</a></li>
+        <li><a href="#">Category 2</a></li>
+        <li><a href="#">Another Category</a></li>
+        <li><a href="#">Category</a></li>
+        <li><a href="#">A Fifth Category</a></li>
+      </ul>
+    </div>
+    <div class="left">
+      <h2>More Links</h2>
+      <ul>
+        <li><a href="#">Sign Up Now</a></li>
+        <li><a href="#">We Are Hiring</a></li>
+        <li><a href="#">Terms &amp; Conditions</a></li>
+        <li><a href="#">Privacy Policy</a></li>
+      </ul>
+    </div>
+    <div class="left">
+      <h2>Contact Us</h2>
+      <ul>
+        <li><a href="#">Email Sales</a></li>
+        <li><a href="#">Email Support</a></li>
+        <li><a href="#">Phone: 555-555-3211</a></li>
+        <li><a href="#">Send Us Feedback</a></li>
+      </ul>
+    </div>
+    <div class="clr"></div>
+  </div>
+  <div class="clr"></div>
+</div>
+<div class="footer">
+  <div class="footer_resize">
+    <p class="leftt">© Copyright websitename . All Rights Reserved. <a href="#">Home</a> | <a href="#">Contact</a> | <a href="#">RSS </a></p>
+    <p class="right">(DT) <a href="http://www.dreamtemplate.com"><strong>Website Templates</strong></a></p>
+    <div class="clr"></div>
+  </div>
+  <div class="clr"></div>
+</div>
+</body>
+</html>
+      </div>
+    </div>
+  <div class="clr"></div>
+</div>
+
+</body>
+</html>
